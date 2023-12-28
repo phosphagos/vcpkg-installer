@@ -36,7 +36,6 @@ fi
 
 # read install path
 default_path=$HOME/.vcpkg
-# default_path=$(pwd)/vcpkg
 echo "in which location will install vcpkg at? [ $default_path ]"
 read install_path
 if [ -z "$install_path" ]; then
@@ -96,8 +95,6 @@ cp "$source_path/vcpkg-init.sh" bin/vcpkg-init
 chmod +x bin/vcpkg-init
 
 ### add environment variable declarations to profile file
-
-# profile_path="$preserved_path/.profile"
 
 ## find proper profile file
 if [ -f "$HOME/.profile" ]; then
