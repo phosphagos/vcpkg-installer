@@ -56,8 +56,7 @@ elif [ ! -z "$(ls -A "$install_path")" ]; then
 fi
 
 ## chdir to install_dir and start concrete installing
-preserved_path=$(pwd)
-source_path=$(dirname $0)
+source_path=$PWD
 cd "$install_path"
 
 ### generating args for bootstrap-vcpkg
@@ -130,4 +129,4 @@ echo "export CMAKE_TOOLCHAIN_FILE=\"$cmake_toolchain_file\"" >> "$profile_path"
 appended_path="$install_path/bin"
 echo "export PATH=\"\$PATH:$appended_path\"" >> "$profile_path"
 
-cd "$preserved_path"
+cd "$source_path"
