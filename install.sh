@@ -123,11 +123,11 @@ vcpkg_root="$install_path/vcpkg"
 echo "export VCPKG_ROOT=\"$vcpkg_root\"" >> "$profile_path"
 
 #### add CMAKE_TOOLCHAIN_FILE
-cmake_toolchain_file="$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake"
+cmake_toolchain_file="\$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake"
 echo "export CMAKE_TOOLCHAIN_FILE=\"$cmake_toolchain_file\"" >> "$profile_path"
 
 #### add PATH
 appended_path="$install_path/bin"
-echo "export PATH=\"$PATH:$appended_path\"" >> "$profile_path"
+echo "export PATH=\"\$PATH:$appended_path\"" >> "$profile_path"
 
 cd "$preserved_path"
