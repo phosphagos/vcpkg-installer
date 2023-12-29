@@ -81,9 +81,8 @@ esac
 git clone https://github.com/Microsoft/vcpkg.git
 ./vcpkg/bootstrap-vcpkg.sh $bootstrap_args
 
-### create `bin` directory and add utils and tools into it
-mkdir bin
-echo "$source_path"
+### create directories and add utils and tools into it
+mkdir bin etc
 
 #### link vcpkg to `bin` directory
 ln vcpkg/vcpkg bin/vcpkg
@@ -94,9 +93,12 @@ chmod +x bin/vcpkg-update
 cp "$source_path/vcpkg-init.sh" bin/vcpkg-init
 chmod +x bin/vcpkg-init
 
+#### add default vcpkg.json to `etc` directory
+cp $source_path/vcpkg.json etc/vcpkg.json
+
 ### add environment variable declarations to profile file
 
-## find proper profile file
+#### find proper profile file
 if [ -f "$HOME/.profile" ]; then
     profile_path="$HOME/.profile"
 elif [ -f "$HOME/.bashrc" ]; then
@@ -115,6 +117,8 @@ case "$set_envvars" in
 esac
 
 #### add VCPKG_ROOT
+echo "# added by vcpkg-installer" >> "$profile_path"
+
 vcpkg_root="$install_path/vcpkg"
 echo "export VCPKG_ROOT=\"$vcpkg_root\"" >> "$profile_path"
 
