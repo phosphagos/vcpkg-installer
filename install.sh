@@ -86,25 +86,17 @@ mkdir bin etc
 #### link vcpkg to `bin` directory
 ln vcpkg/vcpkg bin/vcpkg
 
-#### add vcpkg-update and vcpkg-init utilities to `bin` directory
+#### add utilities to `bin` directory
 cp "$source_path/vcpkg-update.sh" bin/vcpkg-update
 chmod +x bin/vcpkg-update
-cp "$source_path/vcpkg-init.sh" bin/vcpkg-init
-chmod +x bin/vcpkg-init
 
 #### add default vcpkg.json to `etc` directory
 cp $source_path/vcpkg.json etc/vcpkg.json
 
 ### add environment variable declarations to profile file
 
-#### find proper profile file
-if [ -f "$HOME/.profile" ]; then
-    profile_path="$HOME/.profile"
-elif [ -f "$HOME/.bashrc" ]; then
-    profile_path="$HOME/.bashrc"
-else
-    profile_path="$HOME/.bash_profile"
-fi
+#### find proper profile file, use bashrc directly currently
+profile_path="$HOME/.bashrc"
 
 #### request for permission
 read -r -p "Add environment variables to $profile_path? [Y/n] " set_envvars
